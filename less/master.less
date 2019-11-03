@@ -1,0 +1,39 @@
+/* Global */
+.full { height: 100%; width: 100%; }
+.flex { display: flex; align-items: center; justify-content: center; }
+.round(@input) { border-radius: @input; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+@text: {
+  title: 'Permanent Marker', cursive;
+  subtitle: 'Patua One', cursive;
+  paragraph: 'Roboto', sans-serif;
+}
+body {
+  font-family: @text[paragraph];
+  min-height: 100vh;
+  display: grid;
+}
+h1, h2, h3 {
+  font-family: @text[title];
+}
+h4, h5, h6 {
+  font-family: @text[subtitle];
+}
+
+/* Animations */
+
+/* Navigation */
+
+/* Jumbotron */
+
+/* Home */
+
+/* Footer */
+
+/* Shop */
+
+/* Responsive */
