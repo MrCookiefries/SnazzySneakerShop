@@ -25,7 +25,18 @@
 a {
   text-decoration: none;
 }
-body {
+span#dark-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: hsla(0, 0%, 0%, 0);
+  transition: background-color 600ms linear 200ms;
+  z-index: 100;
+}
+span#dark-overlay.active {
+  background-color: hsla(0, 0%, 0%, 0.75);
+}
+body.home {
   font-family: @text[paragraph];
   min-height: 100vh;
   display: grid;
@@ -131,9 +142,58 @@ header {
         font-weight: 600;
       }
     }
+    div {
+      position: fixed;
+      padding: 10px;
+      background-color: @colors[darkGray];
+      border: 2px solid @colors[black];
+      top: 50%;
+      z-index: 200;
+      left: 50%;
+      display: none;
+      transform: translate(-50%, -50%);
+      box-shadow: 2px 2px 6px 8px hsla(0, 0%, 100%, 0.25), -2px -2px 6px 8px hsla(0, 0%, 100%, 0.25);
+      h4 {
+        text-decoration: underline;
+        color: @colors[main];
+        font-size: 1.4em;
+        text-align: center;
+        font-weight: 600;
+        text-decoration-color: @colors[white];
+        margin-bottom: 1em;
+        text-shadow: 1px 1px @colors[black], -1px -1px @colors[black];
+      }
+      fieldset {
+        padding: 10px;
+        label {
+          display: block;
+          font-weight: 600;
+          color: @colors[accent];
+          text-shadow: 1px 1px @colors[black], -1px -1px @colors[black];
+          font-weight: 600;
+        }
+        input {
+          padding: 4px;
+          margin: 1em 0;
+          background-color: transparent;
+          border: none;
+          color: @colors[white];
+          border-bottom: 2px solid @colors[white];
+          transition: background-color 400ms linear;
+          &:active, &:focus {
+            background-color: @colors[gray];
+          }
+        }
+      }
+    }
   }
 }
 /* Jumbotron */
+section.jumbo-overlay {
+  background-color: hsla(0, 0%, 0%, 0.4);
+  grid-area: jumbo;
+  z-index: 2;
+}
 section.jumbotron {
   grid-area: jumbo;
   height: 80vh;
@@ -141,13 +201,8 @@ section.jumbotron {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  span {
-    width: 100%;
-    height: 80vh;
-    background-color: hsla(0, 0%, 0%, 0.4);
-    position: absolute;
-  }
   svg.title {
+    z-index: 4;
     position: relative;
     top: 50%;
     left: 50%;
@@ -257,18 +312,18 @@ section.jumbotron {
   }
 }
 /* Welcome */
-main {
+main.home {
   grid-area: main;
   padding: 10vh 10px 15vh;
-  color: @colors[black];
-  background-color: @colors[lightGray];
+  color: @colors[darkGray];
+  background-color: @colors[white];
   h2 {
     font-size: 2.4em;
     text-align: center;
     margin-bottom: 40px;
     text-shadow: @text[shadow];
     text-decoration: underline;
-    text-decoration-color: @colors[lightGray];
+    text-decoration-color: @colors[white];
   }
   ul {
     li {
@@ -283,15 +338,15 @@ main {
 aside {
   grid-area: aside;
   padding: 10vh 10px 15vh;
-  color: @colors[black];
-  background-color: @colors[lightGray];
+  color: @colors[darkGray];
+  background-color: @colors[white];
   h3 {
     font-size: 1.8em;
     text-align: center;
     margin-bottom: 40px;
     text-shadow: @text[shadow];
     text-decoration: underline;
-    text-decoration-color: @colors[lightGray];
+    text-decoration-color: @colors[white];
   }
   iframe {
     width: 100%;
@@ -340,10 +395,10 @@ section.button {
     &:nth-child(2) {
       top: -10vh;
       right: 0;
-      background-color: @colors[lightGray];
+      background-color: @colors[white];
     }
     &:nth-child(4) {
-      background-color: @colors[lightGray];
+      background-color: @colors[white];
       left: 0;
       bottom: -10vh;
     }
@@ -357,8 +412,8 @@ section.button {
 footer {
   grid-area: footer;
   padding-top: 15vh;
-  background-color: @colors[lightGray];
-  color: @colors[black];
+  background-color: @colors[white];
+  color: @colors[darkGray];
   section {
     padding: 10px;
     border-top: 4px solid @colors[black];
@@ -380,7 +435,15 @@ footer {
   }
 }
 /* Shop */
-
+body.shop {
+  font-family: @text[paragraph];
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: "nav" "main" "footer";
+}
+footer.shop {
+  padding-top: 0;
+}
 /* Responsive */
 @media screen and (max-width: 700px) {
   body {
