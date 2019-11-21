@@ -30,14 +30,14 @@ $(document).ready(() => {
   // Dynamic Shop
   function addShopCard(name, link, cost, year) {
     $("#shoes").append(`<figure class="shoe-card">
-      <div style="display: none;" class="item-name">
-        <h2>${name}</h2>
-      </div>
-      <div><img src="${link}" alt="${name}"></div>
-      <div style="display: none;" class="description">
-        <p><strong>Price: </strong>$${cost}</p>
-        <p><strong>Year: </strong>${year}</p>
-      </div>
+    <div style="display: none;" class="item-name">
+    <h2>${name}</h2>
+    </div>
+    <div><img src="${link}" alt="${name}"></div>
+    <div style="display: none;" class="description">
+    <p><strong>Price: </strong>$${cost}</p>
+    <p><strong>Year: </strong>${year}</p>
+    </div>
     </figure>`);
   }
   for (let i = 0; i < itemNames.length; i++) {
