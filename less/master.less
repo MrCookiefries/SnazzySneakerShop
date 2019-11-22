@@ -66,15 +66,23 @@ h4, h5, h6 {
     stroke: @colors[black];
   }
 }
-@keyframes wave {
-  0%, 100% {
-    transform: rotate(360deg) translateY(0) translateX(20vw);
+@keyframes slide {
+  0% {
+    transform: translateX(-10vw) rotate(180deg);
+    background-color: @colors[black];
   }
-  25%, 75% {
-    transform: rotate(90deg) translateY(-5vh) translateX(0);
+  25% {
+    background-color: @colors[main];
   }
   50% {
-    transform: rotate(180deg) translateY(-10vh) translateX(-20vw);
+    background-color: @colors[white];
+  }
+  75% {
+    background-color: @colors[accent];
+  }
+  100% {
+    transform: translateX(110vw) rotate(-180deg);
+    background-color: @colors[black];
   }
 }
 /* Navigation */
@@ -363,6 +371,56 @@ section.button {
   height: 60vh;
   &:extend(.flex);
   flex-direction: column;
+  div.holder {
+    &:extend(.full);
+    overflow: hidden;
+    position: absolute;
+    div.flake {
+      width: 4em;
+      height: 1em;
+      .round(10em);
+      position: absolute;
+      z-index: 5;
+      left: 0;
+      transform: translateX(-10vw);
+      &:nth-child(1) {
+        top: 30%;
+        animation: slide 4s infinite ease-in-out;
+      }
+      &:nth-child(2) {
+        top: 35%;
+        animation: slide 4s infinite ease-in-out 1s;
+      }
+      &:nth-child(3) {
+        top: 40%;
+        animation: slide 4s infinite ease-in-out 400ms;
+      }
+      &:nth-child(4) {
+        top: 45%;
+        animation: slide 4s infinite ease-in-out 2s;
+      }
+      &:nth-child(5) {
+        top: 50%;
+        animation: slide 4s infinite ease-in-out 1200ms;
+      }
+      &:nth-child(6) {
+        top: 55%;
+        animation: slide 4s infinite ease-in-out 3s;
+      }
+      &:nth-child(7) {
+        top: 60%;
+        animation: slide 4s infinite ease-in-out 2200ms;
+      }
+      &:nth-child(8) {
+        top: 65%;
+        animation: slide 4s infinite ease-in-out 3200ms;
+      }
+      &:nth-child(9) {
+        top: 70%;
+        animation: slide 4s infinite ease-in-out 1800ms;
+      }
+    }
+  }
   button {
     padding: 20px 40px;
     .round(20em);
@@ -375,7 +433,7 @@ section.button {
     text-transform: uppercase;
     transform: scale(1);
     transition: transform 600ms ease-out;
-    z-index: 4;
+    z-index: 10;
     &:hover {
       cursor: pointer;
       transform: scale(1.2);
@@ -451,21 +509,28 @@ main.shop {
     flex-direction: column;
     &:extend(.flex);
     margin: 6em 0;
-    &::before {
-      content: "";
-      display: block;
-      background-color: red;
-      width: 300px;
-      height: $width;
-      position: relative;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%) rotate(45deg);
+    position: relative;
+    &:nth-child(odd) {
+      div span {
+        background-color: @colors[accent];
+      }
     }
     div {
       width: 300px;
       background-color: @colors[darkGray];
-      position: relative;
+      span {
+        display: block;
+        box-shadow: 4px 2px 4px 6px @colors[lightGray];
+        width: 300px;
+        height: 200px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+        z-index: -2;
+        .round(100%);
+        background-color: @colors[main];
+      }
       h2 {
         padding: 10px;
         text-align: center;
@@ -477,6 +542,7 @@ main.shop {
       img {
         width: 100%;
         height: auto;
+        .round(4em);
         &:hover {
           cursor: pointer;
         }
@@ -491,7 +557,7 @@ main.shop {
       }
     }
     div>img {
-      border: 4px solid @colors[darkGray];
+      border: 6px solid @colors[darkGray];
       box-shadow: none;
     }
   }
@@ -514,6 +580,9 @@ footer.shop {
     ul {
       text-align: center;
     }
+  }
+  header nav {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (max-width: 600px) {

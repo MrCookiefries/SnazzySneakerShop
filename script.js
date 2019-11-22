@@ -33,7 +33,9 @@ $(document).ready(() => {
     <div style="display: none;" class="item-name">
     <h2>${name}</h2>
     </div>
-    <div><img src="${link}" alt="${name}"></div>
+    <div><img src="${link}" alt="${name}">
+    <span></span>
+    </div>
     <div style="display: none;" class="description">
     <p><strong>Price: </strong>$${cost}</p>
     <p><strong>Year: </strong>${year}</p>
