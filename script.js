@@ -6,6 +6,10 @@ $(document).ready(() => {
   $("#shop-link").on("click", () => {
     window.location.href = "/pages/shop.html";
   });
+  $("#hamburger").on("click", () => {
+    $("#hamburger").toggleClass("open");
+    $("header nav ul").slideToggle();
+  });
   // Nav Account
   $("#sign-in").on("click", () => {
     if ($("#register-form").is(":visible")) {
@@ -23,6 +27,14 @@ $(document).ready(() => {
     $("#register-form").fadeToggle(600);
     $("#dark-overlay").toggleClass("active");
   });
+  $("#logon-form span").on("click", () => {
+    $("#dark-overlay").removeClass("active");
+    $("#logon-form").hide();
+  });
+  $("#register-form span").on("click", () => {
+    $("#dark-overlay").removeClass("active");
+    $("#register-form").hide();
+  });
   // Button Routes
   $("#shop-btn").on("click", () => {
     window.location.href = "/pages/shop.html";
@@ -30,13 +42,13 @@ $(document).ready(() => {
   // Dynamic Shop
   function addShopCard(name, link, cost, year) {
     $("#shoes").append(`<figure class="shoe-card">
-    <div style="display: none;" class="item-name">
+    <div class="item-name">
     <h2>${name}</h2>
     </div>
     <div><img src="${link}" alt="${name}">
     <span></span>
     </div>
-    <div style="display: none;" class="description">
+    <div class="description">
     <p><strong>Price: </strong>$${cost}</p>
     <p><strong>Year: </strong>${year}</p>
     </div>
@@ -45,11 +57,6 @@ $(document).ready(() => {
   for (let i = 0; i < itemNames.length; i++) {
     addShopCard(itemNames[i], itemLinks[i], itemCosts[i], itemYears[i]);
   }
-  // Shop Clicks
-  $("#shoes").on("click", ".shoe-card", event => {
-    $(event.currentTarget).children("div.description").slideToggle();
-    $(event.currentTarget).children("div.item-name").slideToggle();
-  });
 })
 // Shop Information
 let itemNames = ["ARC x New Balance 1300", "Nike Zoom Eric Koston 1", "Air Jordan Retro IV LS", "Supreme x Vans Half Cab", "Nom de Guerre x Nike Air 180 iD", "KAWS x BAPE Bape STA", "Nike Zoom Huarache 2K4", "VA x adidas ZX 9000 A to ZX", "Nike Free Run+ 2", "J. Crew x New Balance 1400", "UNDFTD x Visvim FBT", "adidas Skate Busenitz", "ALIFE x adidas Grand Slam", "IRAK x adidas Rmx EQT Support Runner", "Solebox x New Balance 1500", "Clae Ellington", "Common Projects Achilles", "Nike Zoom LeBron II", "Nike Air Max", "Missoni x Converse First String Auckland Racer", "Yo! MTV Raps x Puma", "Creative Recreation Cesario", "Jeremy Scott x adidas Originals JS Bear"];
